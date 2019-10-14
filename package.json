@@ -1,0 +1,30 @@
+{
+  "name": "spotifywithgraphql",
+  "version": "1.0.0",
+  "description": "Spotify API with graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebasVelez34/spotifywithgraphql.git"
+  },
+  "author": "Sebastián Vélez Velásquez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SebasVelez34/spotifywithgraphql/issues"
+  },
+  "homepage": "https://github.com/SebasVelez34/spotifywithgraphql#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "dotenv": "^8.1.0",
+    "graphql-scalars": "^1.0.2",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
