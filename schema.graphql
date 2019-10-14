@@ -1,0 +1,103 @@
+scalar EmailAddress
+directive @auth on FIELD_DEFINITION | FIELD
+
+type Query {
+    #Users
+    getUsers:[User]!
+    getSingleUser(id:ID!):User!
+    getUserEmail(email:String!):User!
+    me:User!
+    #Users
+    #Playlists
+    getPlaylists:[Playlist]!
+    getPlaylist(id:ID!):Playlist!
+    #Playlists
+}
+
+type Mutation {
+    #Users
+    createNewUser(data:UserInput!):User!
+    deleteOneUser(id:ID!):String!@auth
+    UpdateOneUser(id:ID!,data:UserUpdateInput!):User!@auth
+    #Users
+    #Playlists
+    createOnePlaylist(data:PlaylistInput!):Playlist!@auth
+    updateOnePlaylist(id:ID!,data:PlaylistUpdateInput!):User!@auth
+    deleteOnePlaylist(id:ID!):String!@auth
+    #Playlists
+    #login
+    login(email:EmailAddress!,password:String!):Auth!
+    #login
+}
+#Login
+type Auth {
+    token:String!
+    message:String!
+}
+#Login
+#Users
+type User{
+    _id:ID!
+    first_name:String!
+    last_name:String!
+    email:String!
+    birth_date:String!
+    gender:GENDERS
+    playlist:[Playlist]!
+    user_type: USER_TYPE!
+}
+
+input UserInput {
+    first_name:String!
+    last_name:String!
+    email:String!
+    password:String!
+    birth_date:String
+    gender:GENDERS
+    user_type: USER_TYPE!
+}
+input UserUpdateInput {
+    first_name:String
+    last_name:String
+    email:String
+    password:String
+    birth_date:String
+    gender:GENDERS
+    user_type: USER_TYPE
+    is_active:Boolean
+}
+
+#Users
+#Playlists
+type Playlist{
+    _id:ID!
+    title:String!
+    owner_user:User!
+}
+
+input PlaylistInput{
+    title:String!
+    owner_user:String!
+}
+
+input PlaylistUpdateInput {
+    owner_user:String
+    is_active:Boolean
+}
+#Playlists
+type Songs{
+    _id:ID!
+    title:String!
+    author:String!
+    anyo: String!
+}
+
+enum GENDERS {
+    M
+    F
+    O
+}
+enum USER_TYPE {
+    Premium
+    Basic
+}
