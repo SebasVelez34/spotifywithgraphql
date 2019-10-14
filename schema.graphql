@@ -91,7 +91,16 @@ type Songs{
     author:String!
     anyo: String!
 }
-
+#Subscription
+type Subscription {
+    playlist: PlaylistSubscriptionPayload!
+}
+type PlaylistSubscriptionPayload{
+    mutation: String!,
+    data: Playlist!
+}
+#Subscription
+#enum
 enum GENDERS {
     M
     F
@@ -101,3 +110,4 @@ enum USER_TYPE {
     Premium
     Basic
 }
+#enum
