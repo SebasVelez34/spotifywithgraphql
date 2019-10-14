@@ -5,9 +5,15 @@ const {
     getSinglePlaylist
 } = require('../../services/PlaylistsService');
 
-const createOnePlaylist = async(_, params) => {
+const createOnePlaylist = async(_, params, { pubsub }) => {
     const playlist = await createPlaylist(params.data);
     if (!playlist) throw new Error('You cant create more Playlist, upgrade to Premium');
+    pubsub.publish('playlist', {
+        playlist: {
+            mutation: 'CREATED',
+            data: playlist
+        }
+    });
     return playlist;
 };
 
